@@ -1,0 +1,15 @@
+<%= @user.name %>, <%= @user.email %>,<%=@user.session_id%>
+<br></br>
+<div class="group-tag">
+<%@invitations.each do |invite|%>
+<div class="col-sm-2">
+
+<%=form_tag '/sessions/chatroom' do%>	
+<%=hidden_field_tag :someone,invite.invited_mail%>
+<%=hidden_field_tag :session_id,invite.session_id%>
+<%=submit_tag "invitation from #{invite.invited_by}" ,class: "btn btn-primary"%>
+</div>
+<%end%>
+<%end%>
+</div>
+

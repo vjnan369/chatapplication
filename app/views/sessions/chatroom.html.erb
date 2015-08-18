@@ -1,0 +1,39 @@
+<div id="myPublisherDiv"></div>
+<p>unique url for this room is <span style="color:blue">tokboxapp.herokuapp.com/room></span></p>
+<%=@sessionId%>
+ <%=@opentok_token%>
+ <div id="subscribersDiv"></div>
+<script src="http://static.opentok.com/v2/js/opentok.min.js" type="text/javascript"></script>
+<script>
+
+ var apiKey = 45297362;
+ var sessionId ="<%=@sessionId%>" ;
+ var token = "<%=@opentok_token%>";
+ var session;
+ OT.setLogLevel(OT.DEBUG);
+
+ 	session = OT.initSession(apiKey,sessionId);
+  var subscriberOptions = {
+  insertMode: 'append',
+  width: 340,
+  height: 260,
+  align: 'center'
+  };
+ 	session.on
+ 	({
+ 		streamCreated: function(event)
+ 		{
+ 			session.subscribe(event.stream,'subscribersDiv',{insertMode: 'append',width:340,height:260});
+ 		}
+ 	});
+
+session.connect(token,function(error){
+ 		if(error)
+ 		{
+ 			console.log(error.message);
+ 		}
+ 		else{
+ 			session.publish('myPublisherDiv',{width: 300,height: 220});
+ 		}
+ 	});	
+</script>
