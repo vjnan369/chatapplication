@@ -8,6 +8,7 @@ class InvitationsController < ApplicationController
 
 	def create
 		@invite_to = User.find_by(id: params[:invitation][:user_id])
+		params[:invitation][:user_id]=current_user.id
 		@inuser=params[:invitation][:inuser]
 		params[:invitation][:invited_by]=current_user.name
 		params[:invitation][:invited_mail]=current_user.email
@@ -22,7 +23,7 @@ class InvitationsController < ApplicationController
 			@invitation = @invite_to.invitations.build(:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
 		else
 			
-			@invitation = @invite_to.invitations.build(:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
+			@invitation = @invite_to.invitations.build(:user_id=>params[:invitation][:user_id],:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
 		end
 		if @invitation.save
 			@opentok_token = @opentok.generate_token current_user.session_id

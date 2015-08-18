@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817132754) do
+ActiveRecord::Schema.define(version: 20150818120949) do
 
   create_table "invitations", force: :cascade do |t|
     t.string   "invited_by"
     t.string   "invited_mail"
     t.string   "session_id"
     t.string   "token"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "invitations", ["created_at"], name: "index_invitations_on_user_id_and_created_at"
+  add_index "invitations", ["user_id", "created_at"], name: "index_invitations_on_user_id_and_created_at"
+  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

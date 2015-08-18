@@ -5,9 +5,11 @@ one:
   invited_mail: MyString
   session_id: MyString
   token: MyString
+  user_id: 
 
 two:
   invited_by: MyString
   invited_mail: MyString
   session_id: MyString
   token: MyString
+  user_id: 

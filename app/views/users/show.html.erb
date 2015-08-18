@@ -3,7 +3,6 @@
 <div class="group-tag">
 <%@invitations.each do |invite|%>
 <div class="col-sm-2">
-
 <%=form_tag '/sessions/chatroom' do%>	
 <%=hidden_field_tag :someone,invite.invited_mail%>
 <%=hidden_field_tag :session_id,invite.session_id%>
