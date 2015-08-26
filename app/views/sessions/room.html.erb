@@ -1,13 +1,19 @@
+
+<%=form_tag 'invitations/destroysession' do%>
+<%=hidden_field_tag :session_id,@sessionId%>
+<%=hidden_field_tag :invite_to_mail,@invite_to_mail%>
+<%=button_tag "exit from chat",class: "btn btn-warning center-block"%>
+<%end%>
 <div id="myPublisherDiv"></div>
-<p>unique url for this room is <span style="color:blue">tokboxapp.herokuapp.com/room></span></p>
+<%=@choose%>
 <%=@sessionId%>
  <%=@opentok_token%>
  <%=@count%>
  <div id="subscribersDiv"></div>
 <script src="https://static.opentok.com/v2/js/opentok.min.js" type="text/javascript"></script>
 <script>
-alert("helloworld")
- var apiKey = 45297362;//sdfds
+
+ var apiKey = 45297362;
  var sessionId ="<%=@sessionId%>" ;
  var token = "<%=@opentok_token%>";
  var session;

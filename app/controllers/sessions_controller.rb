@@ -16,8 +16,9 @@ class SessionsController < ApplicationController
   	end
   end
  def room
-  @opentok_token = @opentok.generate_token current_user.session_id
-  @sessionId = current_user.session_id
+  session=@opentok.create_session :media_mode=>:routed
+  @sessionId = params[:invitation][:session_id]
+  @opentok_token = @opentok.generate_token @sessionId
   @count = current_user.invitations.count
   #@url ="http://localhost:3000/room/"+current_user.id.to_s
   #url=current_user.id.to_s

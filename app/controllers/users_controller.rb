@@ -21,7 +21,7 @@ before_action :admin_user,     only: :destroy
   end
   def create
     session = @opentok.create_session :media_mode => :routed
-    params[:user][:session_id] = session.session_id
+    #params[:user][:session_id] = session.session_id
   	@user = User.new(strong_params)
   	if @user.save
       log_in @user
@@ -52,7 +52,7 @@ before_action :admin_user,     only: :destroy
 
   private
   	def strong_params
-  			params.require(:user).permit(:name,:email,:password,:password_confirmation,:session_id)
+  			params.require(:user).permit(:name,:email,:password,:password_confirmation)
   	end
     def logged_in_user
       unless logged_in?

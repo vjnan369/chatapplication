@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete 'logout'=> 'sessions#destroy'
   root  'users#new'
   post 'sessions/chatroom'
+  post 'invitations/destroysession'
   #match 'room/:id',:to=>"sessions#room",:as=>:rum,:via=>:get
   resources :users
   resources :invitations

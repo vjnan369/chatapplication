@@ -1,4 +1,4 @@
-<%= @user.name %>, <%= @user.email %>,<%=@user.session_id%>
+<%= @user.name %>, <%= @user.email %>
 <br></br>
 <div class="group-tag">
 <%@invitations.each do |invite|%>
@@ -9,6 +9,7 @@
 <%=submit_tag "invitation from #{invite.invited_by}" ,class: "btn btn-primary"%>
 </div>
 <%end%>
+<%=invite.session_id%>
 <%end%>
 </div>
 
