@@ -6,9 +6,16 @@ Rails.application.routes.draw do
   root  'users#new'
   post 'sessions/chatroom'
   post 'invitations/destroysession'
+  namespace :api,defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :users
+      resources :invitations 
+    end
+  end
   #match 'room/:id',:to=>"sessions#room",:as=>:rum,:via=>:get
   resources :users
   resources :invitations
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

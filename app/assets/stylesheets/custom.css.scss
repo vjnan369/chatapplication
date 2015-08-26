@@ -205,6 +205,7 @@ input {
 }
 .users_table{
   td{
+  align: center;
   width: 120px;
   height:70px;
   }
@@ -261,6 +262,8 @@ span.picture {
  border-color:#F00;
     border-style: solid;
 }
-.chat_button{
-  
+
+
+.clear{
+  clear:both
 }

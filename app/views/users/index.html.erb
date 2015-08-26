@@ -1,5 +1,12 @@
 <% provide(:title, 'All users') %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <h1>All users</h1>
+<label style="  float: left;
+  margin: 5px 0px;
+  padding-left: 200px;">click for multiple</label><input type="checkbox" name="users" value="multiple_users" style="float: left;
+  margin: 5px 0px;
+  width: 200px;"/>
+<div class="clear"></div>
 <%= will_paginate %>
 <ul class="users">
   <% @users.each do |user| %>
@@ -7,3 +14,17 @@
   <% end %>
 </ul>
 <%= will_paginate %>
+
+<script>
+$(document).ready(function(){
+	$(".multi_check").fadeOut();
+    $('input[type="checkbox"]').click(function(){
+        if($(this).attr("value")=="multiple_users"){
+            $(".invite_button").toggle();
+            $(".multi_check").toggle();	
+
+        }
+       
+    });
+});
+</script>

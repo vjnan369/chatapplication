@@ -21,6 +21,7 @@ class InvitationsController < ApplicationController
 		#people = {:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token]}
 			@invite_to_mail = @invite_to.email
 		if @invite_to.invitations.exists?(:invited_mail=>current_user.email)
+			#@invite_to.invitations.find_by(:invited_mail =>current_user.email).destroy
 			@invite_to.invitations.find_by(:invited_mail =>current_user.email).destroy
 			@invitation = @invite_to.invitations.build(:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
 		else

@@ -1,3 +1,4 @@
+
 <table class="users_table">
 	<tr>
 		<td>  <%= link_to user.name, user %>
@@ -6,14 +7,19 @@
 	  
 	  <%end%>
 		</td>
+
 		<%if current_user!=user%>
-		<td>
+		<td class="invite_button">
 			<%=form_for(@invitation) do |f|%>
 			<%=f.hidden_field :user_id,:value => user.id%>
 			<%=f.submit "invite for chat",{:class=> "btn btn-primary"}%>
 			<%end%>
 	  </td>
+	  <td class="multi_check">
+	  	<input type="checkbox" name="checkme" value="valuecheck" >
+	  </td>
 	  <%end%>
+
 	  <td>    
 	  <% if current_user.admin? && !current_user?(user)%>
 	    | <%= link_to "delete", user, method: :delete,
