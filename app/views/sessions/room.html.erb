@@ -1,11 +1,11 @@
 
 <%=form_tag 'invitations/destroysession' do%>
 <%=hidden_field_tag :session_id,@sessionId%>
-<%=hidden_field_tag :invite_to_mail,@invite_to_mail%>
+<%=hidden_field_tag :invite_to_id,@invite_to_id%>
 <%=button_tag "exit from chat",class: "btn btn-warning center-block"%>
 <%end%>
 <div id="myPublisherDiv"></div>
-<%=@choose%>
+<%=@test_id%>
 <%=@sessionId%>
  <%=@opentok_token%>
  <%=@count%>

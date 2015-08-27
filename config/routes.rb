@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'invitations/destroysession'
   namespace :api,defaults: {format: 'json'} do
     namespace :v1 do
+      post 'login' => 'sessions#create'
+      post 'invitations/destroy_session'
       resources :users
       resources :invitations 
     end

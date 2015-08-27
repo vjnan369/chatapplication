@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
 	end
 
 	def create
-		@invite_to = User.find_by(id: params[:invitation][:user_id])
+		@invite_to = User.find_by(id: params[:invitation][:to_user_id])
 		params[:invitation][:user_id]=current_user.id
 		@inuser=params[:invitation][:inuser]
 		params[:invitation][:invited_by]=current_user.name
@@ -19,14 +19,16 @@ class InvitationsController < ApplicationController
 		#@usering = users(:jnan)
 	#	@invitation=nil
 		#people = {:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token]}
-			@invite_to_mail = @invite_to.email
-		if @invite_to.invitations.exists?(:invited_mail=>current_user.email)
+			@invite_to_id = @invite_to.id
+			@test_id =1
+		if @invite_to.invitations.where(:invited_mail =>current_user.email).present?
 			#@invite_to.invitations.find_by(:invited_mail =>current_user.email).destroy
+			#@test_id = -99
 			@invite_to.invitations.find_by(:invited_mail =>current_user.email).destroy
 			@invitation = @invite_to.invitations.build(:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
 		else
-			
-			@invitation = @invite_to.invitations.build(:user_id=>params[:invitation][:user_id],:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
+			#@test_id = 100
+			@invitation = @invite_to.invitations.build(:invited_by=>params[:invitation][:invited_by],:invited_mail=>params[:invitation][:invited_mail],:session_id=>params[:invitation][:session_id],:token=>params[:invitation][:token])
 		end
 		if @invitation.save
 			@sessionId = params[:invitation][:session_id]
@@ -40,8 +42,8 @@ class InvitationsController < ApplicationController
 	def destroysession
 		#flash[:success]="#{params[:session_id]}"
 		#@session_id=User.includes(:Invitation).where("session_id=?",params[:session_id])
-		@session_id = params[:invite_to_mail]
-		@invite_to = User.find_by(:email => params[:invite_to_mail])
+		#@session_id = params[:invite_to_mail]
+		@invite_to = User.find_by(:id => params[:invite_to_id])
 		@edit_invitation = @invite_to.invitations.find_by(:invited_mail =>current_user.email).destroy
 		if @edit_invitation.save
 			redirect_to users_url
