@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
    private
   def config_opentok
     if @opentok.nil?
-      @opentok = OpenTok::OpenTok.new 45297362, "df0ccc74f4392e9bea2899d8c8535beab569dd62"
+      @opentok = OpenTok::OpenTok.new 45325402, "8d2f9eea218fd8046bdc9457a660d157dcbc281b"
     end
   end
 end
