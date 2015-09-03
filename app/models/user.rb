@@ -14,18 +14,7 @@ class User < ActiveRecord::Base
 
   # Returns the hash digest of the given string.
 
-   def self.from_omniauth(auth)
-    where(:name, :email, :password).first_or_initialize.tap do |user|
-      #user.provider = auth.provider
-      #user.uid = auth.uid
-      user.name = auth.info.name
-      #user.oauth_token = auth.credentials.token
-      #user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.email = "oauth@gmail.com"
-      user.password = "123456"
-      user.save!
-    end
-  end
+ 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
