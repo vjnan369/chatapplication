@@ -18,6 +18,8 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
+
     <% end %>
+    <%=link_to "login through google","/auth/google_oauth2"%>
   </div>
 </div>

@@ -20,7 +20,7 @@ before_action :admin_user,     only: :destroy
 
   end
   def create
-    session = @opentok.create_session :media_mode => :routed
+  #  session = @opentok.create_session :media_mode => :routed
     #params[:user][:session_id] = session.session_id
   	@user = User.new(strong_params)
   	if @user.save

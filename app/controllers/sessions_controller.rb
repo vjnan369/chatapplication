@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   
   def create
   	#render 'new'
-  	user = User.find_by(email: params[:session][:email].downcase)
-  	if user&&user.authenticate(params[:session][:password])
+  	#user = User.find_by(email: params[:session][:email].downcase)
+    user = User.from_omniauth(env["omniauth.auth"])
+  	#if user&&user.authenticate(params[:session][:password])
+    if true
   		log_in user
      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
   		redirect_back_or user
